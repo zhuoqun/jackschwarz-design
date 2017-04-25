@@ -1,0 +1,439 @@
+/* ==========================================================================
+   Variables
+   ========================================================================== */
+
+$bgc: #000;
+$p-color: #AAA;
+$title-color: #ECECEC;
+$menu-color: #AAA;
+
+/* ==========================================================================
+   Mixins
+   ========================================================================== */
+// transform
+@mixin transform($transforms) {
+   -moz-transformsm: $transforms;
+      -o-transform: $transforms;
+        -ms-transform: $transforms;
+      -webkit-transform: $transforms;
+              transform: $transforms;
+}
+
+//transform origin
+@mixin transform-origin ($origin) {
+    moz-transform-origin: $origin;
+	     -o-transform-origin: $origin;
+	    -ms-transform-origin: $origin;
+	-webkit-transform-origin: $origin;
+          transform-origin: $origin;
+}
+
+//transition
+
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+//transition delay
+@mixin transition-delay ($time) {
+  -webkit-transition-delay: $time;
+      -moz-transition-delay: $time;
+      -o-transition-delay: $time;
+      transition-delay: $time;
+}
+
+//box shadow
+@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+  @if $inset {
+    -webkit-box-shadow:inset $top $left $blur $color;
+    -moz-box-shadow:inset $top $left $blur $color;
+    box-shadow:inset $top $left $blur $color;
+  } @else {
+    -webkit-box-shadow: $top $left $blur $color;
+    -moz-box-shadow: $top $left $blur $color;
+    box-shadow: $top $left $blur $color;
+  }
+}
+
+/* ==========================================================================
+   Common
+   ========================================================================== */
+
+html {
+    background-color: $bgc;
+    font-size: 1em;
+    line-height: 1.4;
+    height: 100%;
+}
+
+body {
+    font: 14px/22px 'Open Sans', Arial, sans-serif;
+    color: $p-color;
+    font-weight: 300;
+    height: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $title-color;
+  letter-spacing: 5px;
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+p {
+  font-family: 'Open Sans', Arial, sans-serif;
+}
+
+img {
+  opacity: 0;
+  @include transition(opacity 1.25s);
+}
+
+.main {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -3em;
+}
+
+.push {
+  height: 3em;
+}
+
+#headbar {
+  position: fixed;
+  top: 0;
+  height: 3.5em;
+  width: 100%;
+  background: #000;
+  z-index: 20;
+  text-align: center;
+  overflow: hidden;
+  font-family: 'Roboto', Arial, sans-serif;
+  font-weight: 100;
+  box-shadow: 0 2px 4px 2px rgba(0,0,0,.6);
+
+  span {
+    display: inline-block;
+    margin-top: 46px;
+    font-size: 1.2em;
+    color: #fff;
+    letter-spacing: 2px;
+    opacity: 0;
+    @include transition(margin-top 1.25s, opacity 1.25s);
+  }
+}
+
+#footer {
+  text-align: center;
+  font-weight: 300;
+  font-size: 0.8em;
+  color: #666;
+  padding-top: 1em;
+}
+
+#home_icon {
+  position: fixed;
+  top: .9em;
+  right: .5em;
+  z-index: 999;
+
+  a {
+    display: block;
+    height: 30px;
+    width: 30px;
+    text-indent: -9999px;
+    background: url(../img/home.png) no-repeat left top;
+    cursor: pointer;
+
+    &:hover {
+      background-position: left bottom;
+    }
+  }
+}
+
+
+#menu_icon {
+  width: 2em;
+  height: 3em;
+  position: fixed;
+  top: .5em;
+  left: .5em;
+  display: block;
+  cursor: pointer;
+  z-index: 999;
+
+  span {
+    position: absolute;
+    top: 1.5em;
+    display: block;
+    width: 2em;
+    height: 2px;
+    background: $menu-color;
+    @include transition(.5s);
+
+    &:before, &:after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background: $menu-color;
+      left: 0;
+      @include transform-origin(center center);
+      @include transition(.5s);
+    }
+
+    &:before {
+      top: -0.5em;
+    }
+
+    &:after {
+      bottom: -0.5em;
+    }
+  }
+
+  &:hover {
+    span {
+      background: $title-color;
+
+      &:before, &:after {
+        background: $title-color;
+      }
+    }
+  }
+
+  &.open {
+
+    span {
+      background: 0 0;
+
+      &:after {
+        background: $p-color;
+        @include transform(rotate(-45deg) translate(0.2em,-0.5em));
+      }
+
+      &:before {
+        background: $p-color;
+        @include transform(rotate(45deg) translate(0.2em,0.5em));
+      }
+    }
+  }
+
+}
+
+.menu-overlay {
+  height: 0;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  background-color: #111;
+  font-family: 'Roboto', Arial, sans-serif;
+  font-size: 2.571em;
+  font-weight: 100;
+  letter-spacing: 2px;
+  text-align: center;
+  overflow: hidden;
+
+  @include transition(height .5s);
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 3em auto 0;
+    
+    li { 
+      display: block;
+      width: 70%;
+      max-width: 10em;
+      margin: 0 auto 1.2em;
+      padding-bottom: .6em;
+      border-bottom: 1px solid #333;
+
+      a {
+        color: $title-color;
+        text-decoration: none;
+        cursor: pointer;
+        @include transition(color .5s);
+
+        span {
+          font-size: 0.555em;
+        }
+
+        &:hover {
+          color: $menu-color;
+        }
+      }
+    }
+  }
+}
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+
+@media only screen and (min-width: 480px) {
+}
+
+@media only screen and (min-width: 768px) {
+  .menu-overlay {
+    font-size: 3.428em;
+
+    ul {
+
+      li {
+        max-width: 14em;
+      }
+    }
+  }
+
+  #menu_icon {
+    left: 1.5em;
+  }
+
+  #home_icon {
+    right: 1.5em;
+  }
+
+  #headbar {
+    height: 4em;
+
+    span {
+      font-size: 1.5em;
+      margin-top: 52px;
+    }
+  }
+
+}
+
+@media only screen and (min-width: 1140px) {
+
+/* ===============
+    Maximal Width
+   ===============*/
+
+  #headbar {
+    height: 4.5em;
+
+    span {
+      margin-top: 62px;
+    }
+  }
+
+}
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+/* ==========================================================================
+   Print styles
+   ========================================================================== */
+
+@media print {
+    *,
+    *:before,
+    *:after {
+        background: transparent !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    a[href^="#"]:after,
+    a[href^="javascript:"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group;
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}

@@ -1,0 +1,464 @@
+@import "common.scss";
+
+/* ==========================================================================
+   About & Contact
+   ========================================================================== */
+
+.wrapper {
+  width: 70%;
+  margin: 3em auto;
+}
+
+h1 {
+  font-size: 2.286em;
+  font-weight: 100;
+  text-align: center;
+  margin-bottom: 2em;
+}
+
+p {
+  text-align: justify;
+  max-width: 43em;
+  line-height: 1.4;
+  letter-spacing: 1px;
+}
+
+.portrait {
+  text-align: center;
+  margin-top: -1em;
+  max-width: 43em;
+  font-size: 1.286em;
+
+  img {
+    width: 60%;
+    height: auto;
+    border-radius: 50%;
+  }
+}
+
+.contact {
+  span {
+    display: block;
+    color: $title-color;
+  }
+}
+
+a {
+  color: $menu-color;
+  text-decoration: underline;
+  @include transition(color .5s);
+
+  &:hover {
+    color: $title-color;
+  }
+}
+
+/* ==========================================================================
+   Portfolio
+   ========================================================================== */
+
+.webdesign, .motion, .appdesign, .typography, {
+  h1 {
+    font-size: 1.714em;
+    margin-bottom: 1em;
+    letter-spacing: 1px;
+
+    span {
+      color: $menu-color;
+    }
+
+    a {
+      font-style: italic;
+      color: $menu-color;
+      text-decoration: none;
+      @include transition(color .5s);
+
+      &:hover {
+        color: $title-color;
+      }
+    }
+  }
+
+  .intro {
+    margin-bottom: 2em;
+    max-width: none;
+  }
+
+  .cards .preview .content a {
+    background-color: rgba(50, 50, 50, .7);
+
+    p {
+      display: none;
+    }
+  }
+}
+
+.cards {
+  width: auto;
+  margin-left: -0.357em;
+  margin-right: -0.357em;
+  clear: both;
+  overflow: hidden;
+
+  h2 {
+    font-size: 1em;
+    line-height: 1;
+    margin: 0;
+    letter-spacing: 1px;
+  }
+
+  .preview {
+    overflow: hidden;
+    position: relative;
+    margin-bottom: .714em;
+    width: 100%;
+    cursor: pointer;
+
+    &:before {
+      content: '';
+      width: 100%;
+      display: block;
+      padding-bottom: 64.3578%;
+    }
+
+    .content {
+      width: auto;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0.357em;
+      right: 0.357em;
+      overflow: hidden;
+
+      a {
+        font-size: 1.2857em;
+        font-weight: 100;
+        text-decoration: none;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        padding: .5em .75em;
+        color: $title-color;
+        z-index: 10;
+        background-color: rgba(50, 50, 50, .7);
+        @include transition(background-color 1.25s, color 1.25s);
+
+        p {
+          text-align: left;
+          color: #DDD;
+          letter-spacing: 1px;
+        }
+
+        .brief {
+          font-size: .7778em;
+          line-height: 1.4;
+          width: 80%;
+        }
+
+        .madein {
+          font-style: italic;
+          margin-top: 2em;
+          font-size: .6em;
+        }
+      }
+
+      img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 5;
+      }
+    }
+
+  }
+  
+}
+
+/* ==========================================================================
+   Portfolio Detail (Work)
+   ========================================================================== */
+
+.banner img {
+  display: none;
+  width: 100%;
+  height: auto;
+  margin-top: 1em;
+}
+
+.work {
+  header {
+    margin-bottom: 1em;
+  }
+
+  h1 {
+    font-size: 1.7143em;
+    text-align: left;
+    margin-bottom: 0;
+    letter-spacing: 2px;
+  }
+
+  .cat {
+    margin: .5em 0;
+    font-size: .875em;
+    font-weight: 100;
+    line-height: 1.2;
+
+    .divider {
+      display: inline-block;
+      margin: 0 .5em;
+    }
+
+    a {
+      font-style: italic;
+    }
+  }
+
+}
+
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.img-wrapper {
+  width: auto;
+  margin-left: -0.5em;
+
+  .img-container {
+    width: 100%;
+    cursor: pointer;
+    overflow: hidden;
+    margin-bottom: .8em;
+
+    &:hover {
+      img {
+        @include transform(scale(1.1));
+      }
+    }
+  }
+
+  .content {
+    display: block;
+    width: 100%;
+    background-color: rgba(255,255,255,.2);
+    position: relative;
+    margin: 0 .5em;
+    overflow: hidden;
+    @include box-shadow(0,0,8px,rgba(0,0,0,.8),true);
+
+    &:before {
+      display: block;
+      content: '';
+      width: 100%;
+      padding-bottom: 64.3578%;
+    }
+
+  }
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    @include transition(transform 1.25s);
+  }
+
+  .title {
+    margin: 0;
+    padding: .6em 1em;
+    position: absolute;
+    display: block;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: .8em;
+    background-color: rgba(0,0,0,.5);
+    color: $title-color;
+    letter-spacing: 2px;
+  }
+}
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+
+@media only screen and (min-width: 480px) {
+  .portrait img {
+    width: 40%;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+
+  .portrait img {
+    width: auto;
+  }
+
+  .wrapper {
+    width: 80%;
+    max-width: 137em;
+  }
+
+  h1 {
+    font-size: 3em;
+    text-align: left;
+  }
+
+  p {
+    font-size: 1.286em;
+    font-weight: 100;
+  }
+
+  li>a {
+    font-size: 1.286em;
+  }
+
+  .contact span {
+    display: inline-block;
+    width: 6em;
+  }
+
+
+    /* ==========================
+       Portfolio categories
+       ========================== */
+
+  .webdesign, .motion, .appdesign, .typography {
+    h1 {
+      font-size: 3em;
+      margin-bottom: .8em;
+      letter-spacing: 2px;
+    }
+
+    .cards .preview {
+      @include transition(-webkit-filter 1.25s);
+      @include transition(filter 1.25s);
+
+      .content a {
+        opacity: 0;
+        color: #222;
+        @include transition(background-color 1.25s, opacity 1.25s);
+
+        p {
+          color: #222;
+          display: block;
+          letter-spacing: normal;
+        }
+
+        .brief {
+          font-size: .5833em;
+        }
+
+        .madein {
+          font-size: .5em;
+        }
+      }
+
+      &:hover {
+        -webkit-filter: grayscale(100%);
+        filter: url("data:image/svg+xml;utf8,<svg version='1.1' xmlns='http://www.w3.org/2000/svg' height='0'><filter id='greyscale'><feColorMatrix type='matrix' values='0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0' /></filter></svg>#greyscale");
+        filter: grayscale(100%);
+
+        .content a {
+          opacity: 1;
+        }
+      }
+
+    }
+  }
+
+    /* ==========================
+       Portfolio 
+       ========================== */
+
+  .cards .preview {
+    float: left;
+    width: 50%;
+
+    .content a {
+      font-size: 1.714em;
+    }
+
+    &:hover {
+      .content a {
+        background-color: rgba(230, 230, 230, .8);
+        color: #222;
+      }
+    }
+
+  }
+
+    /* ==========================
+       Portfolio Detail (Work)
+       ========================== */
+  .work {
+    .wrapper {
+      max-width: 68.5714285714em;
+      margin-top: 3.4em;
+    }
+
+    header {
+      margin-bottom: 2em;
+    }
+
+    h1 {
+      font-size: 2.5714em;
+    }
+
+    p {
+      max-width: 68.5714285714em;
+    }
+
+    .cat {
+      font-size: 1em;
+      margin-top: 1em;
+    }
+
+  }
+
+  .img-wrapper {
+    .img-container {
+      width: 50%;
+      float: left;
+    }
+
+    .title {
+      font-size: 1em;
+    }
+  }
+
+}
+
+@media only screen and (min-width: 1140px) {
+
+  .wrapper {
+    margin-top: 5em;
+
+    .work & {
+      margin-top: 5em;
+    }
+  }
+
+  .banner img {
+    margin: 0;
+  }
+
+}
